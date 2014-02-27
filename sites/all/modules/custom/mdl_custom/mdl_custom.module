@@ -18,7 +18,7 @@ function mdl_custom_node_view($node, $view_mode) {
            '#title' => t('Export'),
            '#href' => "node/$node->nid/data-export",
            '#suffix' => '',
-           '#weight'=> 1
+           '#weight'=> -1
         );  
      }
     return $node;
