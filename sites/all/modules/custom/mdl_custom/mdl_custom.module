@@ -24,3 +24,121 @@ function mdl_custom_node_view($node, $view_mode) {
     return $node;
    }
 }
+
+/*
+ * Implement hook_menu
+ * Use create urls for charts.
+ */
+function mdl_custom_menu() {
+    $items['service-line'] = array(
+        'title' => 'Service Line View',
+        'page callback' => 'service_line_chart',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    $items['sectors'] = array(
+        'title' => 'Sectors View',
+        'page callback' => 'sectors_chart',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    $items['current-status'] = array(
+        'title' => '',
+        'page callback' => 'current_status_chart',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function service_line_chart() {
+  $output='';
+  $service_line_name = taxonomy_vocabulary_machine_name_load('service_line');
+  $service_line_vid = $service_line_name->vid;
+  $service_line = taxonomy_get_tree($service_line_vid);
+  $output .= '<table>';
+  foreach($service_line as $sv){
+   $tids = array($sv->tid);
+   $nids = taxonomy_select_nodes($tids);
+   $output .= '<tr><th>'.$sv->name.'</th></tr>';
+  if(isset($nids[0]) != ''){
+  $node = node_load($nids[0]);
+  $output .='<tr><td>'.$node->title.'</td></tr>';
+  }
+  $output .= '<tr><td>'.count($nids).'</td></tr>';
+ 
+  }
+  
+  $output .= '</table>';
+   //An array of term IDs to match.
+  
+  return $output;
+}
+
+function sectors_chart() {
+  $output='';
+  $sectors_name = taxonomy_vocabulary_machine_name_load('sectors');
+  $sectors_vid = $sectors_name->vid;
+  $sectors = taxonomy_get_tree($sectors_vid);
+  $output .= '<table>';
+  foreach($sectors as $sec){
+   $tids = array($sec->tid);
+   $nids = taxonomy_select_nodes($tids);
+   $output .= '<tr><th>'.$sec->name.'</th></tr>';
+  if(isset($nids[0]) != ''){
+  $node = node_load($nids[0]);
+  $output .='<tr><td>'.$node->title.'</td></tr>';
+  }
+  $output .= '<tr><td>'.count($nids).'</td></tr>';
+ 
+  }
+  
+  $output .= '</table>';
+   //An array of term IDs to match.
+  
+  return $output;
+}
+
+function current_status_chart() {
+  $output='';
+  $status_name = taxonomy_vocabulary_machine_name_load('status');
+  $status_vid = $status_name->vid;
+  $status = taxonomy_get_tree($status_vid);
+  $output .= '<table>';
+  foreach($status as $sta){
+   $tids = array($sta->tid);
+   $nids = taxonomy_select_nodes($tids);
+   $output .= '<tr><th>'.$sta->name.'</th></tr>';
+  if(isset($nids[0]) != ''){
+  $node = node_load($nids[0]);
+  $output .='<tr><td>'.$node->title.'</td></tr>';
+  }
+  $output .= '<tr><td>'.count($nids).'</td></tr>';
+ 
+  }
+  
+  $output .= '</table>';
+   //An array of term IDs to match.
+  
+  return $output;
+}
+
+function mdl_custom_block_info() {
+   $blocks['current_status'] = array(
+    'info' => t('Current Status'), 
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+function mdl_custom_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'current_status':
+      $block['subject'] = t('Current Status');
+      $block['content'] = current_status_chart();
+      break;
+
+  }
+  return $block;
+}
