@@ -42,12 +42,6 @@ function mdl_custom_menu() {
         'access callback' => TRUE,
         'type' => MENU_CALLBACK,
     );
-    $items['current-status'] = array(
-        'title' => '',
-        'page callback' => 'current_status_chart',
-        'access callback' => TRUE,
-        'type' => MENU_CALLBACK,
-    );
     return $items;
 }
 
@@ -56,16 +50,19 @@ function service_line_chart() {
   $service_line_name = taxonomy_vocabulary_machine_name_load('service_line');
   $service_line_vid = $service_line_name->vid;
   $service_line = taxonomy_get_tree($service_line_vid);
-  $output .= '<table>';
+  $geography_name = taxonomy_vocabulary_machine_name_load('geography');
+  $geography_vid = $geography_name->vid;
+  $geography = taxonomy_get_tree($geography_vid);
+  $output .= '<table><tr class="th-row"><th>Row Labels</th>';
+  foreach($geography as $geo){
+  $output .= '<th>'.$geo->name.'</th>';
+  }
+  $output .= '</tr>';
   foreach($service_line as $sv){
    $tids = array($sv->tid);
    $nids = taxonomy_select_nodes($tids);
-   $output .= '<tr><th>'.$sv->name.'</th></tr>';
-  if(isset($nids[0]) != ''){
-  $node = node_load($nids[0]);
-  $output .='<tr><td>'.$node->title.'</td></tr>';
-  }
-  $output .= '<tr><td>'.count($nids).'</td></tr>';
+   $output .='<tr><td>'.$sv->name.'</td>';
+   $output .= '<td>'.count($nids).'</td></tr>';
  
   }
   
@@ -80,18 +77,20 @@ function sectors_chart() {
   $sectors_name = taxonomy_vocabulary_machine_name_load('sectors');
   $sectors_vid = $sectors_name->vid;
   $sectors = taxonomy_get_tree($sectors_vid);
-  $output .= '<table>';
+  $geography_name = taxonomy_vocabulary_machine_name_load('geography');
+  $geography_vid = $geography_name->vid;
+  $geography = taxonomy_get_tree($geography_vid);
+  $output .= '<table><tr class="th-row"><th>Row Labels</th>';
+  foreach($geography as $geo){
+  $output .= '<th>'.$geo->name.'</th>';
+  }
+  $output .= '</tr>';
   foreach($sectors as $sec){
    $tids = array($sec->tid);
    $nids = taxonomy_select_nodes($tids);
-   $output .= '<tr><th>'.$sec->name.'</th></tr>';
-  if(isset($nids[0]) != ''){
-  $node = node_load($nids[0]);
-  $output .='<tr><td>'.$node->title.'</td></tr>';
-  }
-  $output .= '<tr><td>'.count($nids).'</td></tr>';
- 
-  }
+   $output .= '<tr><td>'.$sec->name.'</td>';
+   $output .= '<td>'.count($nids).'</td></tr>';
+   }
   
   $output .= '</table>';
    //An array of term IDs to match.
@@ -99,23 +98,25 @@ function sectors_chart() {
   return $output;
 }
 
-function current_status_chart() {
+function all_chart() {
   $output='';
   $status_name = taxonomy_vocabulary_machine_name_load('status');
   $status_vid = $status_name->vid;
   $status = taxonomy_get_tree($status_vid);
-  $output .= '<table>';
+   $geography_name = taxonomy_vocabulary_machine_name_load('geography');
+  $geography_vid = $geography_name->vid;
+  $geography = taxonomy_get_tree($geography_vid);
+  $output .= '<table><tr class="th-row"><th>Row Labels</th>';
+  foreach($geography as $geo){
+  $output .= '<th>'.$geo->name.'</th>';
+  }
+  $output .= '</tr>';
   foreach($status as $sta){
    $tids = array($sta->tid);
    $nids = taxonomy_select_nodes($tids);
-   $output .= '<tr><th>'.$sta->name.'</th></tr>';
-  if(isset($nids[0]) != ''){
-  $node = node_load($nids[0]);
-  $output .='<tr><td>'.$node->title.'</td></tr>';
-  }
-  $output .= '<tr><td>'.count($nids).'</td></tr>';
- 
-  }
+   $output .= '<tr><td>'.$sta->name.'</td>';
+   $output .= '<td>'.count($nids).'</td></tr>';
+   }
   
   $output .= '</table>';
    //An array of term IDs to match.
@@ -136,7 +137,7 @@ function mdl_custom_block_view($delta = '') {
   switch ($delta) {
     case 'current_status':
       $block['subject'] = t('Current Status');
-      $block['content'] = current_status_chart();
+      $block['content'] = all_chart();
       break;
 
   }
