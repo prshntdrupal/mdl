@@ -1,0 +1,26 @@
+<?php
+/* Module mdl_custom
+ * Use any custom work for site
+ * Author Zeeshan khan
+ * Dated 27-02-14
+ */
+
+/*
+ * Implement hook_node_view
+ * Use add Export link on node detail page.
+ */
+function mdl_custom_node_view($node, $view_mode) {
+  if ($node->type == 'profiles') {
+	 if ($view_mode == 'full') {
+        $node->content['export_content']['link']['Export'] = array(
+           '#type' => 'link',
+           '#prefix' => '',
+           '#title' => t('Export'),
+           '#href' => "node/$node->nid/data-export",
+           '#suffix' => '',
+           '#weight'=> 1
+        );  
+     }
+    return $node;
+   }
+}
