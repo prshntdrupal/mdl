@@ -96,21 +96,36 @@ function sectors_chart() {
   $geography_name = taxonomy_vocabulary_machine_name_load('geography');
   $geography_vid = $geography_name->vid;
   $geography = taxonomy_get_tree($geography_vid);
+   
+  $n1 = array();
+  $n2 = array(); 
+ 
+  foreach($geography as $geo){
+   $n1[] = $tids = array($geo->tid);
+  }
+  foreach($sectors as $sec){
+   $n2[] = $tids = array($sec->tid);
+  }
+ 
   $output .= '<table><tr class="th-row"><th>Row Labels</th>';
   foreach($geography as $geo){
-  $output .= '<th>'.$geo->name.'</th>';
+   $output .= '<th>'.$geo->name.'</th>';
   }
   $output .= '</tr>';
-  foreach($sectors as $sec){
-   $tids = array($sec->tid);
-   $nids = taxonomy_select_nodes($tids);
-   $output .= '<tr><td>'.$sec->name.'</td>';
-   $output .= '<td>'.count($nids).'</td></tr>';
-   }
   
-  $output .= '</table>';
-  
-   //An array of term IDs to match.
+  for($i =0; $i<count($sectors); $i++ ){
+	  $output .= '<tr><td>'.$sectors[$i]->name.'</td>';
+	  $nids1 = taxonomy_select_nodes($n2[$i]);
+	 
+	  for($j =0; $j<count($geography); $j++ ){
+		  $nids2 = taxonomy_select_nodes($n1[$j]);
+		  $a = check_common_nids($nids1,$nids2);
+		  $output .= '<td>'.count($a);
+		  $output .= '</td>'; 
+	 }
+	 $output .= '</tr>';
+  }
+   $output .= '</table>';
   
   return $output;
 }
@@ -120,23 +135,40 @@ function all_chart() {
   $status_name = taxonomy_vocabulary_machine_name_load('status');
   $status_vid = $status_name->vid;
   $status = taxonomy_get_tree($status_vid);
-   $geography_name = taxonomy_vocabulary_machine_name_load('geography');
+ 
+  $geography_name = taxonomy_vocabulary_machine_name_load('geography');
   $geography_vid = $geography_name->vid;
   $geography = taxonomy_get_tree($geography_vid);
+  
+  $n1 = array();
+  $n2 = array(); 
+ 
+  foreach($geography as $geo){
+   $n1[] = $tids = array($geo->tid);
+  }
+  foreach($status as $sta){
+   $n2[] = $tids = array($sta->tid);
+  }
+ 
   $output .= '<table><tr class="th-row"><th>Row Labels</th>';
   foreach($geography as $geo){
-  $output .= '<th>'.$geo->name.'</th>';
+   $output .= '<th>'.$geo->name.'</th>';
   }
   $output .= '</tr>';
-  foreach($status as $sta){
-   $tids = array($sta->tid);
-   $nids = taxonomy_select_nodes($tids);
-   $output .= '<tr><td>'.$sta->name.'</td>';
-   $output .= '<td>'.count($nids).'</td></tr>';
-   }
   
-  $output .= '</table>';
-   //An array of term IDs to match.
+  for($i =0; $i<count($status); $i++ ){
+	  $output .= '<tr><td>'.$status[$i]->name.'</td>';
+	  $nids1 = taxonomy_select_nodes($n2[$i]);
+	 
+	  for($j =0; $j<count($geography); $j++ ){
+		  $nids2 = taxonomy_select_nodes($n1[$j]);
+		  $a = check_common_nids($nids1,$nids2);
+		  $output .= '<td>'.count($a);
+		  $output .= '</td>'; 
+	 }
+	 $output .= '</tr>';
+  }
+   $output .= '</table>';
   
   return $output;
 }
