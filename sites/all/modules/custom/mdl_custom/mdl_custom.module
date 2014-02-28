@@ -50,28 +50,44 @@ function service_line_chart() {
   $service_line_name = taxonomy_vocabulary_machine_name_load('service_line');
   $service_line_vid = $service_line_name->vid;
   $service_line = taxonomy_get_tree($service_line_vid);
+  
   $geography_name = taxonomy_vocabulary_machine_name_load('geography');
   $geography_vid = $geography_name->vid;
   $geography = taxonomy_get_tree($geography_vid);
+  $n1 = array();
+  $n2 = array(); 
+ 
+  foreach($geography as $geo){
+   $n1[] = $tids = array($geo->tid);
+  }
+  foreach($service_line as $sv){
+   $n2[] = $tids = array($sv->tid);
+  }
+ 
   $output .= '<table><tr class="th-row"><th>Row Labels</th>';
   foreach($geography as $geo){
-  $output .= '<th>'.$geo->name.'</th>';
+   $output .= '<th>'.$geo->name.'</th>';
   }
   $output .= '</tr>';
-  foreach($service_line as $sv){
-   $tids = array($sv->tid);
-   $nids = taxonomy_select_nodes($tids);
-   $output .='<tr><td>'.$sv->name.'</td>';
-   $output .= '<td>'.count($nids).'</td></tr>';
- 
+  
+  for($i =0; $i<count($service_line); $i++ ){
+	  $output .= '<tr><td>'.$service_line[$i]->name.'</td>';
+	  $nids1 = taxonomy_select_nodes($n2[$i]);
+	 
+	  for($j =0; $j<count($geography); $j++ ){
+		  $nids2 = taxonomy_select_nodes($n1[$j]);
+		  $a = check_common_nids($nids1,$nids2);
+		  $output .= '<td>'.count($a);
+		  $output .= '</td>'; 
+	 }
+	 $output .= '</tr>';
   }
-  
-  $output .= '</table>';
-   //An array of term IDs to match.
-  
+   $output .= '</table>';
   return $output;
 }
-
+function check_common_nids($nid1, $nid2) {
+	return $commonElements = array_intersect($nid1,$nid2);
+}
 function sectors_chart() {
   $output='';
   $sectors_name = taxonomy_vocabulary_machine_name_load('sectors');
@@ -93,6 +109,7 @@ function sectors_chart() {
    }
   
   $output .= '</table>';
+  
    //An array of term IDs to match.
   
   return $output;
