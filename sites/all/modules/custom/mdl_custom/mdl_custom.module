@@ -45,6 +45,11 @@ function mdl_custom_menu() {
     return $items;
 }
 
+/*
+ * Implement service_line_chart()
+ * Use display Service Line Chart.
+ */
+ 
 function service_line_chart() {
   $output='';
   $service_line_name = taxonomy_vocabulary_machine_name_load('service_line');
@@ -57,79 +62,110 @@ function service_line_chart() {
   $n1 = array();
   $n2 = array(); 
  
-  foreach($geography as $geo){
-   $n1[] = $tids = array($geo->tid);
+  foreach ($service_line as $sv) {
+   $n1[] = $tids = array($sv->tid);
   }
-  foreach($service_line as $sv){
-   $n2[] = $tids = array($sv->tid);
+  
+  foreach ($geography as $geo) {
+   $n2[] = $tids = array($geo->tid);
   }
- 
+   
   $output .= '<table><tr class="th-row"><th>Row Labels</th>';
-  foreach($geography as $geo){
+  foreach ($geography as $geo) {
    $output .= '<th>'.$geo->name.'</th>';
   }
+  $output .= '<th>Grand Total</th>';
   $output .= '</tr>';
-  
-  for($i =0; $i<count($service_line); $i++ ){
+  $ac = '';
+  for ($i =0; $i<count($service_line); $i++ ) {
 	  $output .= '<tr><td>'.$service_line[$i]->name.'</td>';
-	  $nids1 = taxonomy_select_nodes($n2[$i]);
-	 
-	  for($j =0; $j<count($geography); $j++ ){
-		  $nids2 = taxonomy_select_nodes($n1[$j]);
+	  $nids1 = taxonomy_select_nodes($n1[$i]);
+	
+	  for ($j =0; $j<count($geography); $j++ ) {
+		  $nids2 = taxonomy_select_nodes($n2[$j]);
 		  $a = check_common_nids($nids1,$nids2);
-		  $output .= '<td>'.count($a);
-		  $output .= '</td>'; 
+		  $ac += count($a);
+		  $output .= '<td>'.count($a).'</td>';
 	 }
+	 $output .='<td>'.count($nids1).'</td>';
 	 $output .= '</tr>';
   }
-   $output .= '</table>';
+
+    $output .= '<tr><td>Grand Total</td>';
+    for ($j =0; $j<count($geography); $j++ ) {
+		$nids2 = taxonomy_select_nodes($n2[$j]);
+	    $output .= '<td>'.count($nids2).'</td>';
+	}
+		
+	$output .='<td>'.$ac.'</td>';
+    $output .= '</tr></table>';
   return $output;
 }
-function check_common_nids($nid1, $nid2) {
-	return $commonElements = array_intersect($nid1,$nid2);
-}
+
+/*
+ * Implement sectors_chart()
+ * Use display Sector Chart.
+ */
+ 
 function sectors_chart() {
   $output='';
   $sectors_name = taxonomy_vocabulary_machine_name_load('sectors');
   $sectors_vid = $sectors_name->vid;
   $sectors = taxonomy_get_tree($sectors_vid);
+  
   $geography_name = taxonomy_vocabulary_machine_name_load('geography');
   $geography_vid = $geography_name->vid;
   $geography = taxonomy_get_tree($geography_vid);
    
   $n1 = array();
   $n2 = array(); 
- 
-  foreach($geography as $geo){
-   $n1[] = $tids = array($geo->tid);
-  }
+   
   foreach($sectors as $sec){
-   $n2[] = $tids = array($sec->tid);
+   $n1[] = $tids = array($sec->tid);
   }
- 
+  
+  foreach ($geography as $geo) {
+   $n2[] = $tids = array($geo->tid);
+  }
+  
   $output .= '<table><tr class="th-row"><th>Row Labels</th>';
-  foreach($geography as $geo){
+  foreach ($geography as $geo) {
    $output .= '<th>'.$geo->name.'</th>';
   }
+  $output .= '<th>Grand Total</th>';
   $output .= '</tr>';
-  
-  for($i =0; $i<count($sectors); $i++ ){
+  $ac = '';
+  for ($i =0; $i<count($sectors); $i++ ) {
 	  $output .= '<tr><td>'.$sectors[$i]->name.'</td>';
-	  $nids1 = taxonomy_select_nodes($n2[$i]);
+	  $nids1 = taxonomy_select_nodes($n1[$i]);
 	 
-	  for($j =0; $j<count($geography); $j++ ){
-		  $nids2 = taxonomy_select_nodes($n1[$j]);
+	  for ($j =0; $j<count($geography); $j++ ) {
+		  $nids2 = taxonomy_select_nodes($n2[$j]);
 		  $a = check_common_nids($nids1,$nids2);
+		  $ac += count($a);
 		  $output .= '<td>'.count($a);
 		  $output .= '</td>'; 
 	 }
+	 $output .='<td>'.count($nids1).'</td>';
 	 $output .= '</tr>';
   }
-   $output .= '</table>';
+   $output .= '<tr><td>Grand Total</td>';
+    for ($j =0; $j<count($geography); $j++ ) {
+		$nids2 = taxonomy_select_nodes($n2[$j]);
+	    $output .= '<td>'.count($nids2).'</td>';
+	}
+		
+	$output .='<td>'.$ac.'</td>';
+    $output .= '</tr></table>';
   
   return $output;
 }
 
+/*
+ * Implement all_chart()
+ * Use display All Status Chart.
+ */
+ 
 function all_chart() {
   $output='';
   $status_name = taxonomy_vocabulary_machine_name_load('status');
@@ -143,36 +179,61 @@ function all_chart() {
   $n1 = array();
   $n2 = array(); 
  
-  foreach($geography as $geo){
-   $n1[] = $tids = array($geo->tid);
+  foreach ($status as $sta) {
+   $n1[] = $tids = array($sta->tid);
   }
-  foreach($status as $sta){
-   $n2[] = $tids = array($sta->tid);
+  
+  foreach ($geography as $geo) {
+   $n2[] = $tids = array($geo->tid);
   }
- 
+   
   $output .= '<table><tr class="th-row"><th>Row Labels</th>';
-  foreach($geography as $geo){
+  foreach ($geography as $geo) {
    $output .= '<th>'.$geo->name.'</th>';
   }
+  $output .= '<th>Grand Total</th>';
   $output .= '</tr>';
-  
-  for($i =0; $i<count($status); $i++ ){
+  $ac = '';
+  for ($i =0; $i<count($status); $i++ ) {
 	  $output .= '<tr><td>'.$status[$i]->name.'</td>';
-	  $nids1 = taxonomy_select_nodes($n2[$i]);
+	  $nids1 = taxonomy_select_nodes($n1[$i]);
 	 
-	  for($j =0; $j<count($geography); $j++ ){
-		  $nids2 = taxonomy_select_nodes($n1[$j]);
+	  for ($j =0; $j<count($geography); $j++ ) {
+		  $nids2 = taxonomy_select_nodes($n2[$j]);
 		  $a = check_common_nids($nids1,$nids2);
+		  $ac += count($a);
 		  $output .= '<td>'.count($a);
 		  $output .= '</td>'; 
 	 }
+	 $output .='<td>'.count($nids1).'</td>';
 	 $output .= '</tr>';
   }
-   $output .= '</table>';
+  $output .= '<tr><td>Grand Total</td>';
+    for ($j =0; $j<count($geography); $j++ ) {
+		$nids2 = taxonomy_select_nodes($n2[$j]);
+	    $output .= '<td>'.count($nids2).'</td>';
+	}
+		
+	$output .='<td>'.$ac.'</td>';
+    $output .= '</tr></table>';
   
   return $output;
 }
 
+/*
+ * Implement check_common_nids()
+ * Use check the common values in arrays.
+ */
+ 
+function check_common_nids($nid1, $nid2) {
+	return $commonElements = array_intersect($nid1,$nid2);
+}
+
+/*
+ * Implement hook_block_info
+ * Use Register a block.
+ */
+ 
 function mdl_custom_block_info() {
    $blocks['current_status'] = array(
     'info' => t('Current Status'), 
@@ -180,6 +241,12 @@ function mdl_custom_block_info() {
   );
   return $blocks;
 }
+
+/*
+ * Implement hook_block_view
+ * Use Fetch the content.
+ */
+ 
 function mdl_custom_block_view($delta = '') {
   $block = array();
 
