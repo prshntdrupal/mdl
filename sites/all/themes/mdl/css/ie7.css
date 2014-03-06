@@ -1,0 +1,39 @@
+#header ul.om-menu {
+	display: block;
+	position: relative;
+}
+#header ul.om-menu li{
+	display: block;	
+	float: left;
+	width: 241px;
+}
+#header .om-maximenu-content ul.menu li,
+#header .om-maximenu-content ul.menu {
+	list-style: none!important;
+	list-style:none;
+    list-style-type:none;
+    margin-left: 0;
+    list-style-image: none;
+}
+#header .om-maximenu-content ul.menu li {
+	margin-bottom: 5px;
+	width: auto!important;
+	float: none;
+	clear: both;
+}
+#header ul.om-menu li a {
+	padding-top: 5px;
+}
+#om-leaf-om-u1-1874378091-1 .om-maximenu-content{
+	left: 0;
+}
+#block-om-maximenu-om-maximenu-1 {
+	bottom: 10px!important;
+}
+#header .block-search .form-submit  {
+	background-position: left 1px;
+	height: 32px;
+}
+.om-maximenu-menu-wrapper h3{
+    background: url("../image/arrow-drop.gif") no-repeat scroll right 11px transparent;
+}

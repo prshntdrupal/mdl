@@ -1,0 +1,296 @@
+/*reset css*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 13px;
+	font-family: Arial,helvetica;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+  width: 100%
+}
+
+li a{
+  color:#0065bd;
+  outline: medium none;
+}
+
+li a.active, li a:hover {
+  color :#e37222;
+  outline: medium none;
+}
+
+/* basic css */
+
+tr.even, tr.odd {
+  background-color: #F5F5F5;
+} 
+
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.blue {
+  color:#0065bd;
+}
+
+h1,h2,h4,h5,h6,h3 {
+ line-height: 20px;
+ margin: 10px 0;
+ color: #000;
+}
+
+p {
+  margin: 0 0 10px 0;
+  color: ;
+}
+h1 {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: normal;
+}
+h2{
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 30px;
+  margin: 10px 0;
+}
+
+h3 {
+  font-size: 12px;
+  font-weight: bold;
+}
+h4 {
+  color: #999;
+  font-size: 10px;
+  font-weight: normal;
+}
+h5 {
+  color: #333333;
+  font-size: 8px;
+  font-weight: normal;
+}
+
+
+h6 {
+  color: #E37222;
+  font-size: 6px;
+  font-weight: normal;
+}
+
+table td {
+  vertical-align: top;
+}
+
+ul li {
+//background: url("../image/black-dot.png") no-repeat scroll 0 6px transparent;
+  color: #000;
+  font-size: 12px;
+//line-height: 16px;
+  list-style-type: none;
+  margin: 10px 0;
+//padding-left: 12px;
+
+}
+ul.menu li { 
+ background: none;   
+}
+
+/*Define layout structure*/
+
+body {
+ /*background: url("../image/page-background.png") repeat scroll 0 0 transparent;*/
+ background: #ffffff;
+}
+.page-wrapper {
+  margin: 0 auto;
+
+}
+.content-container {
+      border-bottom: 4px solid #2175BF;
+
+  min-height: 400px;
+}
+#header {
+ background: url("../image/header.png") no-repeat scroll 0 0 #061E3E;
+ height: 148px;
+ position: relative;
+
+}
+.header-top-hidden {
+  display: none;
+  height: auto;
+  overflow: hidden;
+  padding: 8px 0;
+  background: #E37222;
+  color: #fff;
+}
+#header-inner .block-om-maximenu {
+	bottom: 0;
+  position: absolute;
+  width: 962px;
+}
+
+#header-inner,
+#nav-inner, #footer-inner,
+.region-header-top-hidden{
+  margin: 0 auto;
+  width: 962px; 
+}
+
+#header-inner {
+  height: 148px;
+  position: relative;
+}  
+
+.page-inner {
+ /* background: url("../image/cotent-background.png") repeat scroll 0 0 transparent;*/
+ border: 1px solid #ffffff;
+  margin: 0 auto;
+  width: 975px;
+}
+#page {
+ margin: 0 25px;
+}
+#right-inner .region-sidebar-second .block{
+   border-bottom: 1px dotted #C1C1C1;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+}
+.not-front #content {
+  //border-right: 4px solid #ECECEC;
+  float: left;
+  //padding: 0 20px 0 0;
+}
+.sidebar-first #left{
+  float: left;
+  width: 200px;
+}
+.sidebar-first #content{
+  float: left;
+  width: 705px;
+  padding-left: 20px;
+}
+.sidebar-second #content{
+	border-right: 4px solid #EBEBEB;
+    float: left;
+    margin-right: 20px;
+    padding-right: 20px;
+    width: 691px;
+}
+.sidebar-second #right{
+  float: left;
+  width: 180px;
+}
+.two-sidebars #left{
+  float: left;
+  width: 180px;
+}
+
+.two-sidebars #content {
+  width: 485px;
+  float: left;
+  padding: 0 20px;
+}
+.two-sidebars #right {
+  float: left;
+  width: 200px;
+}
+.no-sidebars #content{
+  width: 925px;
+  float: none;
+}
+/* adjust the width of content bottom blocks */
+.two-content-bottom #content-bottom-left{
+  float: left;
+}
+.two-content-bottom #content-bottom-right{
+  float: right;
+}
+.one-sidebar.two-content-bottom #content-bottom-left, .one-sidebar.two-content-bottom #content-bottom-right{
+  width: 305px;
+}
+.two-sidebars.two-content-bottom #content-bottom-left, .two-sidebars.two-content-bottom #content-bottom-right{
+  width: 232px;
+}
+.no-sidebars.two-content-bottom #content-bottom-left, .no-sidebars.two-content-bottom #content-bottom-right{
+  width: 452px;
+} 
+
+.mckc-logo {
+ position: relative;
+ top: 39px;
+}
+
+.johnson-logo {
+ float: right;
+ position: relative;
+ right: 196px;
+ top: 52px;  
+}
+
+#right-inner {
+
+
+}
+
+#navigation {
+  padding:6px 0;
+  margin: 0 0 43px;
+}
+#main-content .content p,
+em,b,i, .summary-visible{
+  font-family: georgia;
+  line-height: 20px;
+  color:#333;
+}
+.footer-container{
+  margin: 0 25px;
+}

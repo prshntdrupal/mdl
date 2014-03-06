@@ -1,0 +1,153 @@
+/*Add css for ie
+:first-child+html  property for ie7
+.test { color: blue\9 } for ie 8
+*/
+
+:first-child+html .front #block-menu-menu-site-menu {
+    top:72px !important;
+}
+
+:first-child+html .not-front #block-menu-menu-site-menu {
+    top:-5px !important;
+}
+
+:first-child+html .Services-Content-Listing-Block  td ,
+:first-child+html .recommended-reading-term-listing  td ,
+:first-child+html .recent-publications-listing td,
+:first-child+html .leadership-listing-page-view td,
+:first-child+html .webinar-articles-listing td{
+    border-bottom: 20px solid #fff;
+}
+
+:first-child+html .views-slideshow-controls-text-previous a {
+    padding-left: 25px;
+}
+
+:first-child+html .views-slideshow-controls-text-next a {
+    padding-left: 29px;
+}
+
+
+:first-child+html div.ctools-modal-content a.close img {
+    position: relative;
+    top: -20px;
+}
+
+:first-child+html .ctools-modal-content form input[type="submit"] {
+    padding-left: 0px;
+    position: relative;
+    left: 10px;
+    padding-top: 3px;
+}
+
+:first-child+html .ctools-modal-content textarea {
+    width: 97%;
+}
+
+:first-child+html #block-block-8{
+    overflow: hidden;
+}
+
+:first-child+html .contact-mckinsey a { 
+padding-right: 30px;
+}
+
+:first-child+html .front-search-wrapper {
+    margin-top: -40px;
+}
+
+:first-child+html .front .content-top {
+    margin:12px 0 0 0;
+}
+
+:first-child+html .not-front .content-top {
+    margin:-65px 0 0 0;
+}
+
+:first-child+html #user-pass-reset {
+    margin-right: -30px;
+}
+
+:first-child+html #user-pass-reset #edit-submit {
+   padding-left: 10px;
+   padding-right:  10px;
+}
+
+:first-child+html .page-user-reset #content-area {
+    margin-top: 0px;
+}
+
+:first-child+html .page-user #content-area {
+    margin-top: -30px
+}
+
+:first-child+html .page-user .request-new-password {
+    top: 170px;
+}
+
+:first-child+html .page-user-password #content-area {
+    padding-top:  23px;
+    background: url("../image/login-background.jpg") no-repeat scroll 0 20px transparent;
+}
+
+:first-child+html .front #block-menu-menu-logout {
+    float: right;
+    position: absolute;
+    top: 140px;
+    right: 190px;
+}
+
+:first-child+html #block-search-form {
+left:65px;
+}
+
+:first-child+html .views-slideshow-controls-text-previous a {
+	padding-left:33.2px;
+}
+
+#block-search-form {
+left:65px\9;
+}
+
+:first-child+html .front .content-top {
+    margin-top: 15px;
+}
+
+:first-child+html .back-solutions a {
+    background: url("../image/arrow.png") no-repeat scroll right 25px transparent;
+}
+
+:first-child+html .page-search #content-area ,
+:first-child+html .page-search #console{
+    clear:both;
+}
+.front-search-box .form-text {
+    width: 310px\9;
+    padding:10px 10px 0 10px\9;
+}
+
+.inner-search-box .form-text {
+      padding:6px 6px 0 6px\9;
+}
+        
+#block-menu-menu-site-menu {
+    top:1px\9;
+}
+
+.front .content-top {
+    margin-top:0\9;
+}
+
+.not-front #content {
+    
+}
+
+.Home-page-slideshow-block {
+    margin-top: -20px\9;
+}
+
+.Home-page-slideshow-block .views-field-title {
+    margin-top: 3px\9;
+}
+
+
