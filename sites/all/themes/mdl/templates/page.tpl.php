@@ -12,6 +12,30 @@
         <?php //echo $site_name; ?>
       </div>
       <?php print render($page['header']); ?>
+      <?php if (module_exists('nice_menus')): ?>
+           <nav id="main-menu" role="navigation">
+             <?php
+               print theme('nice_menus_main_menu', array(
+                 'direction' => 'down',
+                 'depth' => -1,
+               )); ?>
+           </nav>
+         <?php elseif ($main_menu): ?>
+           <nav id="main-menu" role="navigation">
+             <?php
+             print theme('links__system_main_menu', array(
+               'links' => $main_menu,
+               'attributes' => array(
+                 'class' => array('links', 'inline', 'clearfix'),
+               ),
+               'heading' => array(
+                 'text' => t('Main menu'),
+                 'level' => 'h2',
+                 'class' => array('element-invisible'),
+               ),
+             )); ?>
+           </nav>
+         <?php endif; ?>
       <?php print render($page['menubar']); ?>
     </div>
   </div> <!-- header end -->

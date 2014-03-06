@@ -172,7 +172,7 @@ body {
   background: #E37222;
   color: #fff;
 }
-#header-inner .block-om-maximenu {
+#header-inner #main-menu{
 	bottom: 0;
   position: absolute;
   width: 962px;
