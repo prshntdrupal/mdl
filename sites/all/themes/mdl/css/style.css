@@ -292,6 +292,10 @@ ul.inline li {
 #main-content .content div, #main-content .content span {
     font-family: georgia;
     line-height: 1.5; }
+#main-content .content .client-cards-block{
+    width:30%;
+    float: left;
+}
 #main-content .content .node .field {
     line-height: 1.5em;
     word-wrap: break-word; }
