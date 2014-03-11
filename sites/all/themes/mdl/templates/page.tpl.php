@@ -1,3 +1,8 @@
+<?php
+if(drupal_is_front_page()) {
+    unset($page['content']['system_main']['default_message']);
+}
+?>
 <div class="page-wrapper">
   <?php if($page['header_top_hidden']): ?>
     <div class="header-top-hidden"> <?php print render($page['header_top_hidden']); ?></div>
@@ -13,15 +18,15 @@
       </div>
       <?php print render($page['header']); ?>
       <?php if (module_exists('nice_menus')): ?>
-           <nav id="main-menu" role="navigation">
+           <div id="main-menu" role="navigation">
              <?php
                print theme('nice_menus_main_menu', array(
                  'direction' => 'down',
                  'depth' => -1,
                )); ?>
-           </nav>
+           </div>
          <?php elseif ($main_menu): ?>
-           <nav id="main-menu" role="navigation">
+           <div id="main-menu" role="navigation">
              <?php
              print theme('links__system_main_menu', array(
                'links' => $main_menu,
@@ -34,7 +39,7 @@
                  'class' => array('element-invisible'),
                ),
              )); ?>
-           </nav>
+           </div>
          <?php endif; ?>
       <?php print render($page['menubar']); ?>
     </div>
@@ -116,18 +121,18 @@
                 <?php print render($page['content']) ?>
               </div>
 
-              <?php if ($page['content_bottom']): ?>
-                <div id="content-bottom">
-                  <?php print render($page['content_bottom']); ?>
-                </div>
-              <?php endif; ?>
-
               <?php if ($page['content-bottom-left']): ?>
               <div id="content-bottom-left">
                 <?php print render($page['content-bottom-left']); ?>
               </div>
               <?php endif; ?>
-
+              
+              <?php if ($page['content_bottom']): ?>
+                <div id="content-bottom">
+                  <?php print render($page['content_bottom']); ?>
+                </div>
+              <?php endif; ?>
+              
               <?php if ($page['content-bottom-right']): ?>
               <div id="content-bottom-right">
                 <?php print render($page['content-bottom-right']); ?>

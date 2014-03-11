@@ -154,8 +154,7 @@ body {
 
 }
 .content-container {
-      border-bottom: 4px solid #2175BF;
-
+  border-bottom: 4px solid #2175BF;
   min-height: 400px;
 }
 #header {
@@ -175,14 +174,14 @@ body {
 #header-inner #main-menu{
 	bottom: 0;
   position: absolute;
-  width: 962px;
+  width: 100%;
 }
 
 #header-inner,
 #nav-inner, #footer-inner,
 .region-header-top-hidden{
   margin: 0 auto;
-  width: 962px; 
+  width: 71%; 
 }
 
 #header-inner {
@@ -194,10 +193,7 @@ body {
  /* background: url("../image/cotent-background.png") repeat scroll 0 0 transparent;*/
  border: 1px solid #ffffff;
   margin: 0 auto;
-  width: 975px;
-}
-#page {
- margin: 0 25px;
+  width: 71%;
 }
 #right-inner .region-sidebar-second .block{
    border-bottom: 1px dotted #C1C1C1;
@@ -244,11 +240,12 @@ body {
   width: 200px;
 }
 .no-sidebars #content{
-  width: 925px;
+  width: 100%;
   float: none;
 }
 /* adjust the width of content bottom blocks */
-.two-content-bottom #content-bottom-left{
+.two-content-bottom #content-bottom-left,
+.two-content-bottom #content-bottom{
   float: left;
 }
 .two-content-bottom #content-bottom-right{
@@ -260,8 +257,11 @@ body {
 .two-sidebars.two-content-bottom #content-bottom-left, .two-sidebars.two-content-bottom #content-bottom-right{
   width: 232px;
 }
-.no-sidebars.two-content-bottom #content-bottom-left, .no-sidebars.two-content-bottom #content-bottom-right{
-  width: 452px;
+.no-sidebars.two-content-bottom #content-bottom-left,
+.no-sidebars.two-content-bottom #content-bottom, 
+.no-sidebars.two-content-bottom #content-bottom-right{
+  width: 30%;
+  margin-right: 3%;
 } 
 
 .mckc-logo {

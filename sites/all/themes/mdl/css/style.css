@@ -2,7 +2,33 @@
     float: right;
     position: relative;
     clear: both;
-    top: 30px; }
+    top: 37px; 
+}
+#header .login-links{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 200px;
+    float: right;
+}
+#header .login-links ul li{
+    float: right;
+    margin: 0px;
+}
+#header .login-links a{
+    background: #5293CD;
+    color: #FFFFFF;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 1px;
+    padding: 8px 5px;
+    float: left;
+    text-decoration: none;
+}
+#header .login-links a:hover{
+    background: none repeat scroll 0 0 #2175BF;
+}
 #header .block-search input[type="text"] {
     background: transparent url("../image/search-bg.png") 0 0 no-repeat;
   border: 0 none;
@@ -39,7 +65,7 @@
     display: table;
     margin: 0;
     padding: 0;
-    width: 970px; 
+    width: 100%; 
     list-style:none;
     list-style-type:none;
 }
@@ -291,10 +317,61 @@ ul.inline li {
     font-family: georgia; }
 #main-content .content div, #main-content .content span {
     font-family: georgia;
-    line-height: 1.5; }
+    line-height: 1.5; 
+}
+#main-content .content .node-client-cards{
+    position: relative;
+}
+#main-content .content .node-client-cards .export{
+    position: absolute;
+    top: -55px;
+    right: 100px;
+}
+#main-content .content .node-client-cards .export a{
+    background: url(../image/buttonBG1.gif) repeat scroll left center;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+
+}
+#main-content .content .node-client-cards .export a:hover{
+    background: url(../image/buttonBG1.gif) repeat scroll right center;
+}
 #main-content .content .client-cards-block{
     width:30%;
     float: left;
+    margin:0 2% 0 0;
+}
+#main-content .content .client-cards-block .field-label{
+    width:95%;
+    background: #E37222;
+    padding:2% 3%;
+    color:#fff;
+}
+#main-content .content .client-cards-block.middle .field-label{
+    background:#9E3434; 
+}
+#main-content .content .client-cards-block.middle .node-yearly-action-plans{
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 10px;
+}
+#main-content .content .client-cards-block.middle .field-name-body{
+    float: right;
+    width: 60%;
+}
+#main-content .content .client-cards-block.right .field-label{
+    background:#2175BF; 
+}
+#main-content .content .client-cards-block ul{
+    padding: 10px;
+}
+#main-content .content .client-cards-block ul li{
+    list-style: disc;
+    margin: 0 0 0 10px;
+    padding: 5px 0;
 }
 #main-content .content .node .field {
     line-height: 1.5em;

@@ -2,7 +2,7 @@
 
 <div class='<?php print $classes ?> clearfix' <?php print ($attributes) ?>>
   <?php if (!empty($title_prefix)) print render($title_prefix); ?>
-
+  <?php print render($content['export_content']['link']['Export']);?>
   <?php if (!$page && !empty($title)): ?>
     <h2 <?php if (!empty($title_attributes)) print $title_attributes ?>>
       <?php if (!empty($new)): ?><span class='new'><?php print $new ?></span><?php endif; ?>
@@ -15,8 +15,9 @@
   <?php if (!empty($submitted)): ?>
     <div class=''><?php print $submitted ?></div>
   <?php endif; ?>
+  
 <?php /********* Left block ********/ ?>
-<div class="client-cards-block">
+<div class="client-cards-block left">
   <?php if (!empty($content['body'])): ?>
        <?php print render($content['body']) ?>
   <?php endif; ?>
@@ -30,16 +31,15 @@
 
 </div>
 <?php /********* Middle block ********/ ?>
-<div class="client-cards-block">
+<div class="client-cards-block middle">
   <?php if (!empty($content['field_yearly_action_plans'])): ?>
       <?php 
-      $field_yearly_action_plans = field_get_items('node', $node, 'field_yearly_action_plans');
-      print render($content['field_yearly_action_plans']) ?>
+          print render($content['field_yearly_action_plans']) ?>
   <?php endif; ?>
 </div>
 
 <?php /********* Right block ********/ ?>
-<div class="client-cards-block">
+<div class="client-cards-block right">
   <?php if (!empty($content['field_action_plan'])): ?>
         <?php print render($content['field_action_plan']) ?>
   <?php endif; ?>
